@@ -32,13 +32,6 @@ section {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-footer {
-    text-align: center;
-    padding: 1em;
-    background: #007bff;
-    color: white;
-    margin-top: 2em;
-}
 h2 {
     color: #007bff;
 }
