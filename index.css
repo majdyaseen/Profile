@@ -1,102 +1,75 @@
-:root{
-.two-col{grid-template-columns:1fr}
-#nav-toggle{display:block}
-.nav-menu{display:none;flex-direction:column;width:100%;padding:8px}
-.nav-menu.show{display:flex}
+:root {
+--bg: #f9fafb;
+--card: #ffffff;
+--accent: #2563eb;
+--text: #111827;
+--muted: #6b7280;
+--radius: 12px;
+--shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+--font: 'Inter', sans-serif;
 }
-
-
-@media print{
-nav,.actions{display:none}
-body{background:#fff}
+* { box-sizing: border-box; }
+body {
+margin: 0;
+font-family: var(--font);
+background: var(--bg);
+color: var(--text);
 }
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
 
+/* Navbar */
+.nav { background: var(--card); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.brand { font-weight: 700; font-size: 1.2rem; color: var(--accent); text-decoration: none; }
+.nav-menu { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
+.nav-menu a { text-decoration: none; color: var(--text); font-weight: 500; }
+
+
+/* Hero */
+.hero { background: linear-gradient(135deg, var(--accent), #1d4ed8); color: white; padding: 60px 20px; }
+.hero-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.hero h1 { font-size: 2.5rem; margin: 0; }
+.hero h2 { font-size: 1.5rem; font-weight: 400; margin: 10px 0; }
+.hero-img { border-radius: 50%; box-shadow: var(--shadow); max-width: 200px; }
+
+
+/* Cards */
+.card { background: var(--card); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 20px; animation: fadeUp 0.6s ease forwards; opacity: 0; }
+
+
+/* Tags */
+.tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.tag { background: var(--accent); color: white; padding: 5px 12px; border-radius: var(--radius); font-size: 0.9rem; }
+
+
+/* Footer */
+.site-footer { text-align: center; padding: 20px; color: var(--muted); }
+
+
+/* Animations */
+.fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn 0.6s ease forwards; }
+@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+
+/* Responsive */
+@media (max-width: 768px) {
+.hero-inner { flex-direction: column; text-align: center; }
+}
 
 
 /* script.js */
-// Save this file as script.js
-(function(){
-// DOM helpers
-function q(sel, ctx){return (ctx||document).querySelector(sel)}
-function qa(sel, ctx){return Array.from((ctx||document).querySelectorAll(sel))}
-
-
-// mobile nav
-const navToggle = q('#nav-toggle')
-const navMenu = q('#nav-menu')
-navToggle && navToggle.addEventListener('click', ()=>{
-navMenu.classList.toggle('show')
-})
-
-
-// smooth scrolling for internal links
-qa('a[href^="#"]').forEach(a=>{
-a.addEventListener('click', function(e){
-const href = this.getAttribute('href')
-if(!href || href === '#') return
-if(href.startsWith('#')){
-e.preventDefault()
-const el = document.querySelector(href)
-if(el) el.scrollIntoView({behavior:'smooth',block:'start'})
-if(navMenu.classList.contains('show')) navMenu.classList.remove('show')
+(function() {
+document.querySelectorAll('.stars').forEach(stars => {
+const level = +stars.dataset.level;
+for (let i = 0; i < 5; i++) {
+const star = document.createElement('span');
+star.textContent = '★';
+star.style.color = i < level ? '#facc15' : '#d1d5db';
+star.style.fontSize = '1.2rem';
+stars.appendChild(star);
 }
-})
-})
-
-
-// fill language stars
-qa('.stars').forEach(span=>{
-const level = parseInt(span.getAttribute('data-level')||0,10)
-span.innerHTML = ''
-for(let i=1;i<=5;i++){
-const s = document.createElement('span')
-s.className = 'star' + (i<=level? ' filled' : '')
-s.textContent = '★'
-span.appendChild(s)
-}
-})
-
-
-// update year
-const yearEl = q('#year')
-if(yearEl) yearEl.textContent = new Date().getFullYear()
-
-
-// Download text resume: compose from DOM
-const downloadBtn = q('#download-txt')
-if(downloadBtn){
-downloadBtn.addEventListener('click', ()=>{
-const parts = []
-parts.push('Majd Yasin\nSoftware Engineer\n')
-parts.push('Location: Amman\nPhone: +962 79 608 9230\n\n')
-parts.push('About:\n')
-const about = q('#about p')
-if(about) parts.push(about.innerText + '\n\n')
-
-
-parts.push('Skills:\n')
-qa('.tag').forEach(t=>parts.push('- ' + t.innerText + '\n'))
-parts.push('\nEducation:\n')
-const edu = q('.edu-item')
-if(edu) parts.push(edu.innerText.replace(/\n+/g,'\n') + '\n')
-
-
-parts.push('\nCourses:\n')
-qa('.course-list li').forEach(li=>parts.push('- ' + li.innerText.replace(/\n+/g,' ') + '\n'))
-
-
-const blob = new Blob(parts,{type:'text/plain;charset=utf-8'})
-const url = URL.createObjectURL(blob)
-const a = document.createElement('a')
-a.href = url
-a.download = 'Majd_Yasin_Resume.txt'
-document.body.appendChild(a)
-a.click()
-a.remove()
-setTimeout(()=>URL.revokeObjectURL(url), 2000)
-})
-}
-
-
+});
+document.getElementById('year').textContent = new Date().getFullYear();
 })();
