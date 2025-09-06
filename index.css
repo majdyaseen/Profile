@@ -1,42 +1,102 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-}
-header {
-    background-color: #007bff;
-    color: #fff;
-    padding: 1em 0;
-    text-align: center;
-}
-#navigation-bar.scrollmenu {
-  background-color: #333;
-  overflow: auto;
-  white-space: nowrap;
+:root{
+.two-col{grid-template-columns:1fr}
+#nav-toggle{display:block}
+.nav-menu{display:none;flex-direction:column;width:100%;padding:8px}
+.nav-menu.show{display:flex}
 }
 
-#navigation-bar.scrollmenu a {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
+
+@media print{
+nav,.actions{display:none}
+body{background:#fff}
 }
 
-#navigation-bar.scrollmenu a:hover {
-  background-color: #777;
+
+
+
+/* script.js */
+// Save this file as script.js
+(function(){
+// DOM helpers
+function q(sel, ctx){return (ctx||document).querySelector(sel)}
+function qa(sel, ctx){return Array.from((ctx||document).querySelectorAll(sel))}
+
+
+// mobile nav
+const navToggle = q('#nav-toggle')
+const navMenu = q('#nav-menu')
+navToggle && navToggle.addEventListener('click', ()=>{
+navMenu.classList.toggle('show')
+})
+
+
+// smooth scrolling for internal links
+qa('a[href^="#"]').forEach(a=>{
+a.addEventListener('click', function(e){
+const href = this.getAttribute('href')
+if(!href || href === '#') return
+if(href.startsWith('#')){
+e.preventDefault()
+const el = document.querySelector(href)
+if(el) el.scrollIntoView({behavior:'smooth',block:'start'})
+if(navMenu.classList.contains('show')) navMenu.classList.remove('show')
+}
+})
+})
+
+
+// fill language stars
+qa('.stars').forEach(span=>{
+const level = parseInt(span.getAttribute('data-level')||0,10)
+span.innerHTML = ''
+for(let i=1;i<=5;i++){
+const s = document.createElement('span')
+s.className = 'star' + (i<=level? ' filled' : '')
+s.textContent = '★'
+span.appendChild(s)
+}
+})
+
+
+// update year
+const yearEl = q('#year')
+if(yearEl) yearEl.textContent = new Date().getFullYear()
+
+
+// Download text resume: compose from DOM
+const downloadBtn = q('#download-txt')
+if(downloadBtn){
+downloadBtn.addEventListener('click', ()=>{
+const parts = []
+parts.push('Majd Yasin\nSoftware Engineer\n')
+parts.push('Location: Amman\nPhone: +962 79 608 9230\n\n')
+parts.push('About:\n')
+const about = q('#about p')
+if(about) parts.push(about.innerText + '\n\n')
+
+
+parts.push('Skills:\n')
+qa('.tag').forEach(t=>parts.push('- ' + t.innerText + '\n'))
+parts.push('\nEducation:\n')
+const edu = q('.edu-item')
+if(edu) parts.push(edu.innerText.replace(/\n+/g,'\n') + '\n')
+
+
+parts.push('\nCourses:\n')
+qa('.course-list li').forEach(li=>parts.push('- ' + li.innerText.replace(/\n+/g,' ') + '\n'))
+
+
+const blob = new Blob(parts,{type:'text/plain;charset=utf-8'})
+const url = URL.createObjectURL(blob)
+const a = document.createElement('a')
+a.href = url
+a.download = 'Majd_Yasin_Resume.txt'
+document.body.appendChild(a)
+a.click()
+a.remove()
+setTimeout(()=>URL.revokeObjectURL(url), 2000)
+})
 }
 
-section {
-    max-width: 900px;
-    margin: 2em auto;
-    padding: 1em;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-h2 {
-    color: #007bff;
-}
+
+})();
