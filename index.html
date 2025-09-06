@@ -1,77 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Portfolio</title>
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
-<header>
-    <h1>Majd Yasin</h1>
-    <p>The wild card that will elevate your business to new hights!</p>
-</header>
-<div id="navigation-bar">
-    <a href="#about">About</a>
-    <a href="#education">Education</a>
-    <a href="#skills">Skills</a>
-    <a href="#courses">Courses</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+<span class="tag">Rust</span>
+<span class="tag">HTML</span>
+<span class="tag">CSS</span>
+<span class="tag">JavaScript</span>
+<span class="tag">LaTeX</span>
+<span class="tag">NumPy</span>
+<span class="tag">Pandas</span>
+<span class="tag">Django</span>
 </div>
-<section id="about">
-    <h2>About Me</h2>
-    <p>Hello! I’m a 17 year old college student, passionate about all things technology. I am currently pursuing a degree in Computer Science at the German-Jordanian University. I am always open to learning and competing with my colleagues to elevate myself further!</section>
-<section id="education">
-    <h2>Education</h2>
-    <ul>
-        <li>Bachelor of Computer Science, German-Jordanian University [Oct 2024 - Now]</li>
-        <p>This degree spans over four years and will let me take my fourth year semester in a German college and an internship at a German company. The course contains C programming, Java object oriented programming, Data structures, Web development and much more.</p>
-        <li>High School Diploma, Dubai Modern Education School [Sep 2023 - Jul 2024]</li>
-    </ul>
 </section>
-<section id="skills">
-    <h2>Skills</h2>
-    <ul>
-        <li>Programming: Python, C</li>
-        <li>Web Development: HTML, CSS, JavaScript</li>
-        <li>Modules: Pandas, Numpy</li>
-    </ul>
+
+
+<section id="experience" class="card">
+<h3>Work Experience</h3>
+<p class="muted">No work experience listed in the source file. Leave this section to fill in later or connect to LinkedIn/GitHub.</p>
+<ul class="experience-list">
+<!-- Placeholder entries — replace with real entries when available -->
+<li>
+<h4>—</h4>
+<p class="muted">(Add role/company/dates)</p>
+</li>
+</ul>
 </section>
-<section id="courses">
-    <h2>Courses</h2>
-    <ul>
-        <li>Python course, Pioneers Academy [Summer 2023]</li>
-        <p>A full course of basic Python programming, and using Pandas and Numpy to analyze and manipulate data sets.</p>
-        <li>HTML/CSS online course, FreeCodeCamp.com [Oct 2024]</li>
-        <p>A course of basic use of HTML and CSS to make websites.</p>
-    </ul>
+
+
+<section id="education" class="card">
+<h3>Education</h3>
+<div class="edu-item">
+<h4>German Jordanian University</h4>
+<p class="muted">October 2024 – Present — Bachelor's in Computer Science</p>
+<p>Studying Computer Science while learning German. Scholarship and internship in Germany guaranteed.</p>
+</div>
 </section>
-<section id="projects">
-    <h2>Projects</h2>
-    <ul>
-        <li>Project 1: Personal Website</li>
-        <p>The website you are seeing now is the first project I worked on without any kind of outside help!</p>
-        <li>Project 2: "Bin Full!" detector</li>
-        <p>Me and a few high school colleges created a system where our janitors' phones receive a notification once a bin in a classroom is full. This has lowered the overtime our school staff were working making and made the school spotless!</p>
-    </ul>
+
+
+<section id="courses" class="card">
+<h3>Courses</h3>
+<ul class="course-list">
+<li>
+<strong>Python Data Analysis Course</strong><br>
+<span class="muted">Pioneers Academy — July 2023 – November 2025</span>
+</li>
+</ul>
 </section>
-<section id="contact">
-    <h2>Contact Me</h2>
-    <p>E-mail: majd.nouryasin@gmail.com</p>
-    <p>Phone: +962796089230</p>
-    <p>Linked In: <a href="https://www.linkedin.com/in/majdyasin">Majd Yasin</a></p>
-    <p>Or use the built in message system!</p>
-    <form action="https://formspree.io/f/xkggplev" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-        <label for="message">Message:</label><br>
-        <textarea id="message" name="message" rows="5" required></textarea><br><br>
-        <button type="submit">Submit</button>
-    </form>
+
+
+<section id="languages" class="card">
+<h3>Languages</h3>
+<p class="muted">Self-reported skill levels (★ = 1)</p>
+<ul class="lang-list">
+<li><strong>Arabic</strong> <span class="stars" data-level="5" aria-hidden="true"></span></li>
+<li><strong>English</strong> <span class="stars" data-level="4" aria-hidden="true"></span></li>
+<li><strong>German</strong> <span class="stars" data-level="3" aria-hidden="true"></span></li>
+</ul>
 </section>
-<script src="index.js"></script>
+
+
+<section id="contact" class="card">
+<h3>Contact</h3>
+<p>If you want this website connected to an email address, GitHub, or LinkedIn link, tell me and I’ll add it.</p>
+<p class="muted">Phone: <a href="tel:+962796089230">+962 79 608 9230</a></p>
+</section>
+</main>
+
+
+<footer class="site-footer">
+<div class="container">
+<p>© <span id="year"></span> Majd Yasin — Built with ♥</p>
+<p class="muted">Generated from uploaded resume text.</p>
+</div>
+</footer>
+
+
+<script src="script.js"></script>
 </body>
 </html>
