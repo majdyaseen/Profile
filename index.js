@@ -1,12 +1,13 @@
-// Contact form submission handler
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-
-    alert(`Thank you, ${name}! Your message has been received.`);
-
-    // Clear form fields after submission
-    document.getElementById('contactForm').reset();
+(function() {
+document.querySelectorAll('.stars').forEach(stars => {
+const level = +stars.dataset.level;
+for (let i = 0; i < 5; i++) {
+const star = document.createElement('span');
+star.textContent = '★';
+star.style.color = i < level ? '#facc15' : '#d1d5db';
+star.style.fontSize = '1.2rem';
+stars.appendChild(star);
+}
 });
+document.getElementById('year').textContent = new Date().getFullYear();
+})();
